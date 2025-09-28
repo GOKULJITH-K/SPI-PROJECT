@@ -43,12 +43,12 @@ This results in **full-duplex communication**, meaning the master and slave send
 SPI provides four modes of operation, determined by **Clock Polarity (CPOL)** and **Clock Phase (CPHA)**.  
 This ensures compatibility with different devices that require data sampling on different edges of the clock.  
 
-| Mode | CPOL | CPHA | Clock Idle | Data Sampled On | Data Changed On |
-|------|------|------|-------------|-----------------|-----------------|
-| 0    | 0    | 0    | Low         | Rising edge     | Falling edge    |
-| 1    | 0    | 1    | Low         | Falling edge    | Rising edge     |
-| 2    | 1    | 0    | High        | Falling edge    | Rising edge     |
-| 3    | 1    | 1    | High        | Rising edge     | Falling edge    |
+| Mode | CPOL | CPHA | Clock Idle | Data Sampled On | 
+|------|------|------|-------------|-----------------|
+| 0    | 0    | 0    | Low         | Rising edge     | 
+| 1    | 0    | 1    | Low         | Falling edge    | 
+| 2    | 1    | 0    | High        | Falling edge    | 
+| 3    | 1    | 1    | High        | Rising edge     | 
 
 ---
 
@@ -80,7 +80,8 @@ The project includes:
 - **Design of RTL modules**: interface, baud generator, slave select, shifter, and top-level.  
 - **Testbenches** for simulation and functional verification.  
 - **Linting** with Synopsys SpyGlass to ensure coding style and design rule compliance.  
-- **Synthesis** with Synopsys DC Shell to generate a gate-level netlist.  
+- **Synthesis** with Synopsys DC Shell to generate a gate-level netlist.
+- **Coverage reporting**: collects line, branch, toggle, condition, and FSM coverage, and generates detailed text/HTML reports using Synopsys VCS.
 
 ---
 
@@ -109,8 +110,7 @@ The **APB-SPI Core** is organized into four main functional blocks:
 - Generates control signals for other blocks based on register values.  
 
 ### 5.2 Baud Rate Generator
-- Derives the SPI clock (SCLK) from the system clock (PCLK).  
-- Equation:  
+- Derives the SPI clock (SCLK) from the system clock (PCLK).    
 - Ensures proper timing for MOSI and MISO transfers.  
 - Supports **CPOL/CPHA configuration** for different SPI modes.  
 
@@ -138,12 +138,13 @@ The design is modular and divided into separate Verilog files:
 - **`shift.v`** → Shifter for serial ↔ parallel data conversion.  
 - **`slave.v`** → Slave select logic and TIP/Receive_Data flags.  
 - **`top.v`** → Integrates all modules into a single SPI core.  
-- **`top_tb.v`**, **`interface_tb.v`** → Testbenches for simulation and verification.  
+- **`top_tb.v`** → Testbenches for simulation and code coverage.  
 
 ### Toolchain Used
 - **Simulation:** Xilinx Simulator  
 - **Linting:** Synopsys SpyGlass  
-- **Synthesis:** Synopsys Design Compiler (DC Shell)  
+- **Synthesis:** Synopsys Design Compiler (DC Shell)
+- **Code Coverage:** Synopsys VCS
 
 ---
 
@@ -156,6 +157,6 @@ By combining the efficiency of the SPI protocol with the simplicity of the APB i
 - Easy configurability through register-based control.  
 - Low-power operation with support for wait and stop modes.  
 
-This work demonstrates a **full VLSI design flow**: from specification and RTL coding, to simulation, linting, and synthesis — ensuring the design is ready for real hardware integration.  
+This work demonstrates a **full VLSI design flow**: from specification and RTL coding, to simulation, linting, synthesis and code coverage — ensuring the design is ready for real hardware integration.  
 
 ---
