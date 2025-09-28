@@ -3,7 +3,7 @@
 This repository contains the design, simulation, and implementation of an **APB-based Serial Peripheral Interface (SPI) Core**.  
 The project integrates the well-known **SPI communication protocol** with the **AMBA APB bus**, making it highly suitable for use in **SoC (System-on-Chip)** and **embedded systems**.  
 
-The work involves **RTL design in Verilog**, **verification using testbenches**, **linting with SpyGlass**, and **synthesis using Synopsys DC Shell**.  
+The work involves **RTL design in Verilog**, **verification using testbenches**, **linting with SpyGlass**, **code coverage using vcs**, and **synthesis using Synopsys DC Shell**.  
 This document serves both as a **technical overview** and as a **user guide** for the project.  
 
 ---
