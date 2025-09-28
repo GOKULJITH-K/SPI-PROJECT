@@ -8,7 +8,7 @@ This document serves both as a **technical overview** and as a **user guide** fo
 
 ---
 
-## 📘 1. SPI Protocol – Detailed Explanation
+##  1. SPI Protocol – Detailed Explanation
 
 The **Serial Peripheral Interface (SPI)** is a **synchronous serial communication protocol** developed by Motorola in the 1980s. It has since become one of the most widely adopted methods for short-distance communication between **controllers (masters)** and **peripherals (slaves)**.  
 
@@ -52,7 +52,7 @@ This ensures compatibility with different devices that require data sampling on 
 
 ---
 
-## ⚖️ 2. Comparison with Other Protocols
+##  2. Comparison with Other Protocols
 
 SPI is often compared with other serial communication protocols like **I²C** and **UART**. Each has unique advantages, disadvantages, and use cases.  
 
@@ -66,14 +66,11 @@ SPI is often compared with other serial communication protocols like **I²C** an
 | Error Handling  | None built-in        | ACK/NACK support              | Optional parity bit  |
 | Hardware Cost   | Low                  | Medium (requires pull-ups)    | Low                  |
 
-👉 **Key Insights:**  
-- SPI is the **fastest** and most efficient, but requires more pins and separate SS lines for each slave.  
-- I²C is slower but supports many devices with only two wires.  
-- UART is simple and reliable for **point-to-point long-distance** communication but cannot support multiple devices on one bus.  
+ 
 
 ---
 
-## 📜 3. Project Overview
+##  3. Project Overview
 
 This project implements a **custom APB-SPI Core** in Verilog.  
 
@@ -87,7 +84,7 @@ The project includes:
 
 ---
 
-## 🌟 4. Features
+##  4. Features
 
 - **APB3 Slave Interface** for integration with AMBA-based systems.  
 - Supports all **four SPI modes (0–3)** via CPOL and CPHA bits.  
@@ -101,7 +98,7 @@ The project includes:
 
 ---
 
-## 🏗️ 5. Architecture
+##  5. Architecture
 
 The **APB-SPI Core** is organized into four main functional blocks:
 
@@ -114,3 +111,51 @@ The **APB-SPI Core** is organized into four main functional blocks:
 ### 5.2 Baud Rate Generator
 - Derives the SPI clock (SCLK) from the system clock (PCLK).  
 - Equation:  
+- Ensures proper timing for MOSI and MISO transfers.  
+- Supports **CPOL/CPHA configuration** for different SPI modes.  
+
+### 5.3 Slave Select Generator
+- Manages the **SS signal** in master mode.  
+- Pulls SS low during active transfer and high afterward.  
+- Generates useful status signals:
+- **TIP (Transfer In Progress)**  
+- **Receive_Data flag**  
+
+### 5.4 Shifter
+- Performs **parallel-to-serial** and **serial-to-parallel** data conversion.  
+- Shifts out data on **MOSI** and shifts in data on **MISO**.  
+- Configurable for **MSB-first** or **LSB-first** operation.  
+- Synchronizes transfers with SCLK edges according to CPOL/CPHA.  
+
+---
+
+##  6. Implementation
+
+The design is modular and divided into separate Verilog files:
+
+- **`interface.v`** → Implements the APB slave interface and register set.  
+- **`baud.v`** → Baud rate generator for SCLK.  
+- **`shift.v`** → Shifter for serial ↔ parallel data conversion.  
+- **`slave.v`** → Slave select logic and TIP/Receive_Data flags.  
+- **`top.v`** → Integrates all modules into a single SPI core.  
+- **`top_tb.v`**, **`interface_tb.v`** → Testbenches for simulation and verification.  
+
+### Toolchain Used
+- **Simulation:** Xilinx Simulator  
+- **Linting:** Synopsys SpyGlass  
+- **Synthesis:** Synopsys Design Compiler (DC Shell)  
+
+---
+
+##  7. Conclusion
+
+The **APB-SPI Core** designed in this project provides a complete, configurable, and synthesizable SPI solution for integration into **SoCs and FPGA-based embedded systems**.  
+
+By combining the efficiency of the SPI protocol with the simplicity of the APB interface, the design enables:  
+- High-speed communication with external peripherals.  
+- Easy configurability through register-based control.  
+- Low-power operation with support for wait and stop modes.  
+
+This work demonstrates a **full VLSI design flow**: from specification and RTL coding, to simulation, linting, and synthesis — ensuring the design is ready for real hardware integration.  
+
+---
