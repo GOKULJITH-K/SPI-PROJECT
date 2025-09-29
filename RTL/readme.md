@@ -5,7 +5,7 @@ Each module in this directory performs a **specific role** in the SPI protocol, 
 
 The design follows a **modular approach**:
 - Each functional block (APB interface, baud rate generator, shifter, slave select) is implemented as a separate module.
-- The `top.v` file instantiates and connects all submodules.
+- The `top_mod.v` file instantiates and connects all submodules.
 - All modules are coded in **synthesizable Verilog** with proper resets, parameterization, and configurability.
 
 ---
