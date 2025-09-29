@@ -105,4 +105,4 @@ Eight screenshots should be saved under `sim/waveforms/`:
 - Both **MSB-first** and **LSB-first** data ordering are validated.  
 - Waveforms demonstrate correct SCLK polarity, sampling phase, and bit ordering.  
 - This ensures the design is **functionally correct** before coverage   
-```
+
