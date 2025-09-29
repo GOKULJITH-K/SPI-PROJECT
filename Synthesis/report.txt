@@ -1,0 +1,91 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : top_mod
+Version: T-2022.03-SP4
+Date   : Sun Sep 21 17:54:00 2025
+****************************************
+
+Operating Conditions: nom_pvt   Library: lsi_10k
+Wire Load Model Mode: top
+
+  Startpoint: B1/SPI_BR_reg[1]
+              (rising edge-triggered flip-flop clocked by PCLK)
+  Endpoint: B2/sclk_o_reg
+            (rising edge-triggered flip-flop clocked by PCLK)
+  Path Group: PCLK
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock PCLK (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  B1/SPI_BR_reg[1]/CP (FD2)                0.00       0.00 r
+  B1/SPI_BR_reg[1]/Q (FD2)                 2.36       2.36 r
+  B1/spr_o[1] (spi_slave_interface)        0.00       2.36 r
+  B2/spr_i[1] (spi_baud_generator)         0.00       2.36 r
+  B2/U41/Z (IVP)                           0.26       2.62 f
+  B2/U63/Z (OR2P)                          1.15       3.76 f
+  B2/U64/Z (NR2)                           1.07       4.83 r
+  B2/U4/S (FA1A)                           2.43       7.26 r
+  B2/U96/Z (EN)                            1.19       8.45 f
+  B2/U97/Z (EN)                            1.91      10.36 f
+  B2/U106/Z (NR2)                          1.59      11.94 r
+  B2/U107/Z (ND4)                          0.87      12.82 f
+  B2/U108/Z (MUX21L)                       0.83      13.64 r
+  B2/U109/Z (EN)                           1.13      14.77 f
+  B2/U129/Z (NR2)                          0.81      15.58 r
+  B2/U136/Z (ND4)                          1.01      16.59 f
+  B2/U137/Z (ND2)                          0.91      17.50 r
+  B2/U7/Z1 (B2I)                           0.45      17.95 f
+  B2/U223/Z (ND2)                          0.64      18.59 r
+  B2/U225/Z (AO3)                          0.50      19.10 f
+  B2/sclk_o_reg/D (FD3)                    0.00      19.10 f
+  data arrival time                                  19.10
+
+  clock PCLK (rise edge)                  20.00      20.00
+  clock network delay (ideal)              0.00      20.00
+  B2/sclk_o_reg/CP (FD3)                   0.00      20.00 r
+  library setup time                      -0.90      19.10
+  data required time                                 19.10
+  -----------------------------------------------------------
+  data required time                                 19.10
+  data arrival time                                 -19.10
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+ 
+****************************************
+Report : area
+Design : top_mod
+Version: T-2022.03-SP4
+Date   : Sun Sep 21 17:54:00 2025
+****************************************
+
+Library(s) Used:
+
+    lsi_10k (File: /home1/B120/GokulK/SPI_project_RN/lib/lsi_10k.db)
+
+Number of ports:                          174
+Number of nets:                          1021
+Number of cells:                          812
+Number of combinational cells:            697
+Number of sequential cells:               107
+Number of macros/black boxes:               0
+Number of buf/inv:                         89
+Number of references:                       4
+
+Combinational area:               1184.000000
+Buf/Inv area:                       90.000000
+Noncombinational area:             939.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                  2123.000000
+Total area:                 undefined
+1
