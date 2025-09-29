@@ -140,5 +140,4 @@ source top_mod.tcl
 
 and review results in `top_mod.v` and `report.txt`.
 
-```
 
