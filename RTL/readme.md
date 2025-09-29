@@ -1,4 +1,4 @@
-# 📝 RTL Modules – APB-SPI Core
+#  RTL Modules – APB-SPI Core
 
 This directory contains the **Register-Transfer Level (RTL) design files** for the APB-based Serial Peripheral Interface (SPI) Core.  
 Each module in this directory performs a **specific role** in the SPI protocol, and together they implement a complete, configurable, and synthesizable SPI controller that can be integrated into an SoC or FPGA project.
@@ -10,29 +10,29 @@ The design follows a **modular approach**:
 
 ---
 
-## 📂 Files and Functionality
+##  Files and Functionality
 
-### 1. `top.v`
+### 1. `top_mod.v`
 - **Role:**  
   The **top-level integration module** of the APB-SPI Core.
 - **Functionality:**  
   - Instantiates all lower-level modules:
-    - `interface.v`
-    - `baud.v`
-    - `slave.v`
-    - `shift.v`
+    - `spi_slave_interface.v`
+    - `spi_baud_generator.v`
+    - `spi_slave_select.v`
+    - `spi_shift_reg.v`
   - Provides glue logic to connect APB bus signals to SPI core internals.
   - Exposes **external SPI pins**:
     - `MOSI`, `MISO`, `SCLK`, `SS`
   - Exposes **APB bus interface**:
     - `PADDR`, `PWRITE`, `PSEL`, `PENABLE`, `PWDATA`, `PRDATA`
 - **Notes:**  
-  `top.v` acts as the **bridge between SoC bus logic and the SPI peripheral**.  
+  `top_mod.v` acts as the **bridge between SoC bus logic and the SPI peripheral**.  
   This modularity allows the core to be dropped into any APB-compliant SoC with minimal changes.
 
 ---
 
-### 2. `interface.v`
+### 2. `spi_slave_interface.v`
 - **Role:**  
   Implements the **APB3 slave interface** for register-based control and status monitoring.
 - **Functionality:**  
@@ -53,7 +53,7 @@ The design follows a **modular approach**:
 
 ---
 
-### 3. `baud.v`
+### 3. `spi_baud_generator.v`
 - **Role:**  
   Generates the **serial clock (SCLK)** used by SPI transfers.
 - **Functionality:**  
@@ -72,7 +72,7 @@ The design follows a **modular approach**:
 
 ---
 
-### 4. `slave.v`
+### 4. `spi_slave_select.v`
 - **Role:**  
   Handles the **slave select (SS) logic** for SPI in master mode.
 - **Functionality:**  
@@ -87,7 +87,7 @@ The design follows a **modular approach**:
 
 ---
 
-### 5. `shift.v`
+### 5. `spi_shift_reg.v`
 - **Role:**  
   Implements the **shifter logic** for SPI’s parallel-to-serial and serial-to-parallel conversion.
 - **Functionality:**  
@@ -105,7 +105,7 @@ The design follows a **modular approach**:
 
 ---
 
-## 🔧 Design Notes
+##  Design Notes
 - **Reset Strategy:** All registers and counters reset to known states (typically zero or idle).  
 - **Parameterization:** Word sizes, prescaler ranges, and mode options are configurable.  
 - **Synthesizability:** Code adheres to synthesizable Verilog practices (no delays, no behavioral-only constructs).  
