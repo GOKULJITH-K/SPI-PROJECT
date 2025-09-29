@@ -46,7 +46,7 @@ lint:
 
 * `clean` removes previous run results.
 * `lint` launches VC Static shell with `spi.tcl`.
-* **Note:** Set the environment variable before running:
+* **Note:** Set the environment variable before running (skip this step if already configured in your shell/profile):
 
   ```bash
   export VC_STATIC_HOME=/path/to/vc_static
