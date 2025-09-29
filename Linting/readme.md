@@ -87,7 +87,7 @@ report_lint -verbose -file spi_project_report.txt
 
 ##  How to Run
 
-1. **Set environment variable** (once per session):
+1. **Set environment variable** (skip this step if already configured in your shell/profile):
 
    ```bash
    export VC_STATIC_HOME=/tools/synopsys/vc_static
