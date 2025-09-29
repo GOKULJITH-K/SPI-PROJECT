@@ -181,7 +181,7 @@ Skipping lint may lead to wasted time debugging trivial RTL mistakes during simu
 
 ---
 
-## ✅ Summary
+##  Summary
 
 * Run `make lint` to check all RTL files.
 * Report saved in `spi_project_report.txt`.
@@ -190,5 +190,4 @@ Skipping lint may lead to wasted time debugging trivial RTL mistakes during simu
 
 This flow is beginner-friendly: just follow the steps, read the report, fix issues, and repeat until the RTL is clean.
 
-```
 
