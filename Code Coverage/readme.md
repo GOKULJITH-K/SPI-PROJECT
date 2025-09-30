@@ -150,7 +150,7 @@ Below is the structured waiver documentation that can be reused for all modules.
 
 ####  Toggle Coverage Waivers
 - **`target_s[3:0]` not toggling**  
-  - The slave-select logic uses a counter up to `BaudRateDivisor / (2*16)`.  
+  - The slave-select logic uses a counter up to `(BaudRateDivisor/2)*16`.  
   - Because of this, the **lowest 4 bits of `target_s` never toggle** during normal operation.  
   - URG marks this as uncovered, but it is **expected and waived**.  
 
