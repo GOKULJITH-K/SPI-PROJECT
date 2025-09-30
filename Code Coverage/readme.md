@@ -108,7 +108,7 @@ Update this table with your actual URG results after each run:
 
 | Module                | Line | Branch | Condition | Toggle | FSM  |
 | --------------------- | ---- | ------ | --------- | ------ | ---- |
-| `spi_baud_generator`  | 95%  | 90%    | 88%       | 89%    | 100% |
+| `spi_baud_generator`  | 100%  | 100%    | 77.78%       | 95.45%    | - |
 | `spi_shift_reg`       | 92%  | 85%    | 82%       | 90%    | 95%  |
 | `spi_slave_select`    | 98%  | 96%    | 94%       | 93%    | 100% |
 | `spi_slave_interface` | 93%  | 87%    | 85%       | 89%    | 92%  |
