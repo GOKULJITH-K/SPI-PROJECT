@@ -86,7 +86,7 @@ verdi:
    make report
    ```
 
-   HTML report appears under `coverage_report/urgReport.html`.
+   HTML report appears under `urgReport/urgReport.html`.
 4. **Open interactive coverage in Verdi**
 
    ```bash
