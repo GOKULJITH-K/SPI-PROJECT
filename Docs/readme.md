@@ -76,11 +76,11 @@ This document provides a summary of the APB-Based SPI Core, including its regist
 
 [cite_start]The SPI Core transmits data received from the APB Bus and receives data onto the bus[cite: 92, 94]. [cite_start]The transfer process follows this sequence[cite: 95]:
 
-1.  [cite_start]**Data Loading:** Data is written into the SPI data register via the APB Bus[cite: 96].
-2.  [cite_start]**SS Activation:** The slave select (SS) signal is driven low to start communication[cite: 97].
-3.  [cite_start]**Clock Generation:** The SPI Core generates the SCLK based on the CPHA and CPOL settings[cite: 98].
-4.  [cite_start]**Data Transmission:** Data is shifted out through the MOSI line and received through the MISO line on the clock edges[cite: 99].
-5.  [cite_start]**Transfer Completion:** The SS signal is driven high, and the clock generation stops, ending the transfer[cite: 100].
+1.  **Data Loading:** Data is written into the SPI data register via the APB Bus.
+2.  **SS Activation:** The slave select (SS) signal is driven low to start communication.
+3.  **Clock Generation:** The SPI Core generates the SCLK based on the CPHA and CPOL settings.
+4.  **Data Transmission:** Data is shifted out through the MOSI line and received through the MISO line on the clock edges.
+5.  **Transfer Completion:** The SS signal is driven high, and the clock generation stops, ending the transfer.
 
 ---
 
