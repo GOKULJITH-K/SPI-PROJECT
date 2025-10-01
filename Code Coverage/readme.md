@@ -144,7 +144,7 @@ Below is the structured waiver documentation that can be reused for all modules.
   - Any integer multiplied by 2 (or a higher power of 2) will always result in an even number. In binary, an even number's least significant bit (bit 0) is always 0.   
   - Waived since it is a *structural property* of the divider logic.
   
--**counter_s[11]` is Always Zero**
+- **counter_s[11] is Always Zero**
 
 This bit fails to toggle because the counter **never reaches a number high enough** to require using its 11th bit.
 
