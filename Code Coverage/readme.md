@@ -143,6 +143,28 @@ Below is the structured waiver documentation that can be reused for all modules.
 - **BaudRateDivisor LSB (bit[0])**  
   - Any integer multiplied by 2 (or a higher power of 2) will always result in an even number. In binary, an even number's least significant bit (bit 0) is always 0.   
   - Waived since it is a *structural property* of the divider logic.
+  
+-**counter_s[11]` is Always Zero**
+
+This bit fails to toggle because the counter **never reaches a number high enough** to require using its 11th bit.
+
+* **Counter's Limit:** The counter increments until it reaches the value of `(BaudRateDivisor_o / 2) - 1`.
+
+* **Maximum Divisor:** Let's calculate the largest possible `BaudRateDivisor_o` your inputs can produce:
+    * Max `sppr_i` is `3'b111` (7). So, `(sppr_i + 1)` is 8.
+    * Max `spr_i` is `3'b111` (7). So, `2**(spr_i + 1)` is `2**8`, which is 256.
+    * Max `BaudRateDivisor_o` = 8 * 256 = **2048**.
+
+* **Maximum Count Value:** Now, let's plug that into the counter's limit formula:
+    * `Max Count` = (`2048 / 2`) - 1 = 1024 - 1 = **1023**.
+
+The largest number your 12-bit counter will ever hold is 1023.
+
+* **The Binary Representation:**
+    * The number 1023 in binary is `0011 1111 1111`.
+    * The number 2048 (the value needed to set the 11th bit) is `1000 0000 0000`.
+
+Since counter's value never goes above 1023, the most significant bit, `counter_s[11]`, **will always stay at `0`**. It never has a reason to turn on, and therefore, it cannot be toggled.
 
 ### `spi_slave_select`
 
