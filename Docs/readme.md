@@ -1,6 +1,5 @@
-Here is the `readme.md` file based on the document provided.
 
-# APB-Based Serial Peripheral Interface (SPI) Core
+## APB-Based Serial Peripheral Interface (SPI) Core
 
 This document provides a summary of the APB-Based SPI Core, including its register map, signal descriptions, and operational details.
 
