@@ -141,8 +141,7 @@ Below is the structured waiver documentation that can be reused for all modules.
 
 ####  Toggle Coverage Waivers
 - **BaudRateDivisor LSB (bit[0])**  
-  - By design, the Baud Rate Divisor is always an **even number**.  
-  - This means `bit[0]` will always be `0` and **never toggles**.  
+  - Any integer multiplied by 2 (or a higher power of 2) will always result in an even number. In binary, an even number's least significant bit (bit 0) is always 0.   
   - Waived since it is a *structural property* of the divider logic.
 
 ### `spi_slave_select`
