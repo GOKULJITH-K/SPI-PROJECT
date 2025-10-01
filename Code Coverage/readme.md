@@ -151,7 +151,47 @@ Below is the structured waiver documentation that can be reused for all modules.
 - **`target_s[3:0]` not toggling**  
   - The slave-select logic uses a counter up to `(BaudRateDivisor/2)*16`.  
   - Because of this, the **lowest 4 bits of `target_s` never toggle** during normal operation.  
-  - URG marks this as uncovered, but it is **expected and waived**.  
+  - URG marks this as uncovered, but it is **expected and waived**.
+    Of course. Let's walk through the exact numbers to show why the 15th bit of `target_s` can never be turned on.
+
+- **`target_s[15]` not toggling**  
+
+`assign target_s = (BaudRateDivisor_i / 2) * 16;`
+
+---
+
+### Step-by-Step with the Maximum Number
+
+1.  **Maximum Input**
+    * Your input `BaudRateDivisor_i` is a 12-bit number.
+    * The largest value a 12-bit number can hold is **4095**.
+    * In binary, 4095 is `1111 1111 1111`.
+
+2.  **Step 1: Divide by 2**
+    * `4095 / 2 = 2047` (using integer division, as hardware does).
+    * In binary, this is like shifting the bits to the right:
+        `1111 1111 1111` becomes `0111 1111 1111`.
+
+3.  **Step 2: Multiply by 16**
+    * `2047 * 16 = 32752`.
+    * In binary, this is like shifting the bits 4 places to the left:
+        `0111 1111 1111` becomes `0111 1111 1111 0000`.
+
+---
+
+### The Final Result
+
+The largest possible number your logic can ever produce is **32,752**.
+
+Let's look at this final number in the 16-bit format of `target_s`:
+
+| Bit Position | 15 | 14 | 13 | 12 | 11 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Binary Value** | **0** | **1** | **1** | **1** | **1** | **1** | **1** | **1** | **1** | **1** | **1** | **1** | **0** | **0** | **0** | **0** |
+
+As you can see, even when we use the absolute biggest input number, the **15th bit is still 0**.
+
+Because it's impossible for your logic to calculate a number large enough to put a `1` in that 15th position, that bit will always be stuck at `0`. If it's always `0`, it can never be "toggled," which is why the coverage fails for that specific bit.
 
 ---
 ##  How to Interpret Coverage Reports
