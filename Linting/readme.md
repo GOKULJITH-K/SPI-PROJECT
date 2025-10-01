@@ -152,6 +152,14 @@ The file `spi_project_report.txt` will contain:
 
 ---
 
+### How I Solved the Lint Violation (STARC 1.3.1.3)
+The STARC 1.3.1.3 violation occurred because the asynchronous reset condition was incomplete. The fix involved ensuring the reset condition correctly sets the initial state for all driven variables.
+Key Steps Taken to Resolve the Issue:
+ * Identified Missing Assignments: Checked the always @(posedge clk or negedge rst_n) block and found that a sequential variable (reg type), while assigned in the synchronous path, was not explicitly assigned a reset value in the if (!rst_n) block.
+ * Root Cause: The lint tool flagged this as improper use (AsyncResetOtherUse) because the reset path did not define the state of the unassigned register.
+ * Mandatory Fix Applied: Every single sequential variable driven inside that procedural block was added to the asynchronous reset condition and explicitly assigned to a known value (e.g., 0 or 1).
+This ensures the reset path is complete and exclusive, satisfying the STARC 1.3.1.3 requirement and eliminating the critical lint violation.
+---
 ##  Waivers
 
 Some warnings may be intentional (e.g., reserved bits left unused). In such cases:
