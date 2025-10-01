@@ -104,7 +104,7 @@ Update this table with your actual URG results after each run:
 | `spi_baud_generator`  |  93.31%    | 100%  | 100%    | 77.78%       | 95.45%    | - |
 | `spi_slave_select`       |  97.77%    | 100%  | 100%    | 100%       | 91.07%    | -  |
 | `spi_slave_interface`    |  95.25%  | 100%  | 100%    | 89.61%       | 86.64%    | 100% |
-| `spi_shift_reg` |  -   | 100%  | 100%    | 100%       | 100%    | 100%  | - |
+| `spi_shift_reg` |  100%  | 100%  | 100%    | 100%       | 100%    | -  |
 
 ---
 
