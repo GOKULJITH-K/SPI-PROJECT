@@ -158,8 +158,6 @@ Below is the structured waiver documentation that can be reused for all modules.
 
 `assign target_s = (BaudRateDivisor_i / 2) * 16;`
 
----
-
 ### Step-by-Step with the Maximum Number
 
 1.  **Maximum Input**
@@ -177,7 +175,6 @@ Below is the structured waiver documentation that can be reused for all modules.
     * In binary, this is like shifting the bits 4 places to the left:
         `0111 1111 1111` becomes `0111 1111 1111 0000`.
 
----
 
 ### The Final Result
 
